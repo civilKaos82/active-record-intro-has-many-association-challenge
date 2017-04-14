@@ -29,7 +29,7 @@ The has many association is the inverse.  Any time a model's table hold a foreig
 
 ### Declaring a Has Many Association
 ```ruby
-class Dog < ActiveRecord::Base
+class Dog < ApplicationRecord
   belongs_to :owner, { class_name: "Person" }
   has_many :ratings
 end
@@ -58,7 +58,7 @@ When we declare a has many association, we pass an argument that says what we we
 In addition, Active Record needs to know how to identify the many ratings that a dog has.  In other words, it needs to know the foreign key on the ratings table that points to a dog.  The convention is that the name of the foreign key will match the name of the model declaring the has many association.  In our case, the `Dog` class is declaring the has many association, so the ratings table should have a foreign key field named `dog_id`.  Again, we're following convention.
 
 ```ruby
-class Dog < ActiveRecord::Base
+class Dog < ApplicationRecord
   has_many :ratings, { :class_name => "Rating", :foreign_key => :dog_id }
 end
 ```
